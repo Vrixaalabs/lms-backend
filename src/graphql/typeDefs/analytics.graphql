@@ -1,0 +1,35 @@
+enum MetricType {
+  LEARNING_TIME
+  COMPLETION_RATE
+  ASSESSMENT_SCORES
+  ACTIVITY_PATTERNS
+  SKILL_PROGRESS
+}
+
+enum ReportFormat {
+  PDF
+  CSV
+  EXCEL
+  JSON
+}
+
+input ReportFilterInput {
+  metrics: [MetricType!]!
+  categories: [String!]
+  timeRange: TimeRangeInput!
+  format: ReportFormat!
+}
+
+type Report {
+  downloadUrl: String
+  data: String
+  generatedAt: DateTime!
+  format: ReportFormat!
+}
+
+type Query {
+  generateCustomReport(
+    metrics: [MetricType!]!
+    filters: ReportFilterInput!
+  ): Report!
+}
