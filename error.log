@@ -1,0 +1,26 @@
+2025-07-02T09:21:09.592Z [[31merror[39m]: Error connecting to MongoDB: connect ECONNREFUSED ::1:27017
+2025-07-02T12:35:08.851Z [[31merror[39m]: Error connecting to MongoDB: connect ECONNREFUSED ::1:27017
+2025-07-02T12:42:51.925Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:42:56.930Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:43:01.924Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:43:06.927Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:43:11.932Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:43:16.924Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:43:21.927Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:43:26.927Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:45:38.397Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:46:05.317Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:46:05.658Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:46:10.313Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:46:15.314Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:46:20.315Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:47:31.881Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:47:36.878Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:31:00.142Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:31:00.800Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:31:05.069Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:31:05.133Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:32:47.048Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:32:48.161Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:33:15.024Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:33:16.220Z [[31merror[39m]: Authentication error: Unauthorized

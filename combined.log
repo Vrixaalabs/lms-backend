@@ -1,0 +1,85 @@
+2025-07-02T09:21:09.592Z [[31merror[39m]: Error connecting to MongoDB: connect ECONNREFUSED ::1:27017
+2025-07-02T12:35:08.851Z [[31merror[39m]: Error connecting to MongoDB: connect ECONNREFUSED ::1:27017
+2025-07-02T12:39:30.822Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-02T12:39:30.828Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-02T12:39:30.829Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-02T12:42:51.925Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:42:56.930Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:43:01.924Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:43:06.927Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:43:11.932Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:43:16.924Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:43:21.927Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:43:26.927Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:45:38.397Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:46:05.317Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:46:05.658Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:46:10.313Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:46:15.314Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:46:20.315Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:47:31.881Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-02T12:47:36.878Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:30:47.727Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T02:30:47.733Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T02:30:47.734Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T02:31:00.142Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:31:00.800Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:31:05.069Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:31:05.133Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:32:47.048Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:32:48.161Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:33:05.532Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T02:33:05.536Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T02:33:05.536Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T02:33:15.024Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:33:16.220Z [[31merror[39m]: Authentication error: Unauthorized
+2025-07-03T02:43:00.169Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T02:43:00.173Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T02:43:00.174Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T02:43:58.938Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T02:43:58.942Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T02:43:58.942Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T02:44:38.354Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T02:44:38.358Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T02:44:38.359Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T03:08:26.111Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T03:08:26.115Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T03:08:26.115Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T05:10:01.809Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T05:10:01.822Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T05:10:01.825Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T05:25:18.745Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T05:25:18.757Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T05:25:18.758Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T05:26:31.234Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T05:26:31.244Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T05:26:31.246Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T05:29:01.457Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T05:29:01.471Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T05:29:01.472Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T05:34:30.678Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T05:34:30.688Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T05:34:30.690Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T05:35:42.244Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T05:36:08.728Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T05:36:08.739Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T05:36:08.740Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T05:37:47.069Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T05:37:47.085Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T05:37:47.087Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T05:42:46.714Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T05:42:46.726Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T05:42:46.727Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T05:55:07.138Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T05:55:07.149Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T05:55:07.151Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T05:55:38.102Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T05:55:38.114Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T05:55:38.115Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T06:06:14.433Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T06:06:14.448Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T06:06:14.450Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T06:18:46.442Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T06:18:46.454Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T06:18:46.456Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
+2025-07-03T06:33:01.405Z [[33mwarn[39m]: MongoDB disconnected

@@ -1,4 +1,4 @@
-import { writeFile } from 'fs/promises';
+import { writeFile,mkdir } from 'fs/promises';
 import path from 'path';
 import { Parser } from 'json2csv';
 
@@ -13,7 +13,7 @@ export function exportToJSON(data) {
 
 export async function exportToExcel(data) {
   // use exceljs or sheetjs
-  return Buffer.f rom('Excel binary content'); // placeholder
+  return Buffer.from('Excel binary content'); // placeholder
 }
 
 export async function exportToPDF(data) {
@@ -22,7 +22,11 @@ export async function exportToPDF(data) {
 }
 
 export async function saveReportFile(name, content) {
-  const filePath = path.join(__dirname, `../../reports/${name}`);
+   const reportsDir = path.join(__dirname, '../../reports');
+   console.log('Ensuring reports directory exists at:', reportsDir);
+  await mkdir(reportsDir, { recursive: true });
+  const filePath = path.join(reportsDir, name);
+  console.log('Writing report file to:', filePath);
   await writeFile(filePath, content);
   return `http://yourdomain.com/reports/${name}`;
 }

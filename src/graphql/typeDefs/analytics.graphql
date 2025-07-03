@@ -13,6 +13,13 @@ enum ReportFormat {
   JSON
 }
 
+input TimeRangeInput {
+  from: DateTime!
+  to: DateTime!
+}
+
+scalar DateTime
+
 input ReportFilterInput {
   metrics: [MetricType!]!
   categories: [String!]
