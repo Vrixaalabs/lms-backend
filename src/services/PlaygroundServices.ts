@@ -1,10 +1,9 @@
 import { PlaygroundFileModel } from '../models/PlaygroundFile';
 import { codeWrapper } from '../utils/codeWrapper';
 import { runCodeSafely } from '../utils/codeRunner';
-import { SubmittedCodeModel } from '../models/SubmittedCode';
 
 export const PlaygroundService = {
-  async execute(fileId) {
+  async execute(fileId: string) {
     console.log('PlaygroundService.execute called with fileId:', fileId);
     
     try {
@@ -13,46 +12,52 @@ export const PlaygroundService = {
       if (!file) {
         console.error('File not found.');
         return {
-          stdout: null,
+          stdout: '', // Changed from null to empty string
           stderr: 'Playground file not found',
           success: false,
           passedTestCases: 0,
           executionTime: 0
         };
       }
-
+      
       if (!file.content || file.content.trim().length === 0) {
-        throw new Error('Empty source file!');
+        console.error('Empty source file!');
+        return {
+          stdout: '', // Changed from null to empty string
+          stderr: 'Empty source file!',
+          success: false,
+          passedTestCases: 0,
+          executionTime: 0
+        };
       }
-
+      
       // Wrap user code
       const { wrappedCode, expectedOutputs } = await codeWrapper(
         file.language,
         file.content,
         file.problemId
       );
-
-      //  Run wrapped code
+      
+      // Run wrapped code
       const result = await runCodeSafely(file.language, wrappedCode, expectedOutputs);
-
-      //  Save result to DB
-      await SubmittedCodeModel.create({
-        fileId: fileId,
-        problemId: file.problemId,
-        language: file.language,
-        content: file.content,
-        owner: 'shujan', // Replace with actual user id if available
-        status: result.success ? 'Passed' : 'Failed',
-        executionTime: result.executionTime
-      });
-
-      return result;
-
-    } catch (error) {
+      
+      // Ensure result is not null and has required fields
+      const finalResult = {
+        stdout: result.stdout || '',
+        stderr: result.stderr || '',
+        success: Boolean(result.success),
+        passedTestCases: result.passedTestCases || 0,
+        executionTime: result.executionTime || 0
+      };
+      
+      console.log('Service returning result:', finalResult);
+      return finalResult;
+      
+    } catch (error: any) {
       console.error('Service error:', error);
       return {
-        stdout: null,
-        stderr: error.message,
+        stdout: '', // Changed from null to empty string
+        stderr: error?.message || 'Unknown service error',
         success: false,
         passedTestCases: 0,
         executionTime: 0
