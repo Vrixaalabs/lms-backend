@@ -24,7 +24,7 @@ async function startApolloServer() {
   // Apply Apollo middleware
   app.use(
     '/graphql',
-    authMiddleware,
+    //authMiddleware,
     expressMiddleware(apolloServer, {
       context: async ({ req }) => ({
         user: req.user, // Set by authMiddleware
