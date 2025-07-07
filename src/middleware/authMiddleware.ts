@@ -3,13 +3,6 @@ import { auth } from 'express-oauth2-jwt-bearer';
 import { config } from '../config/env';
 import { logger } from '../utils/logger';
 
-// Configure Auth0 middleware
-const checkJwt = auth({
-  audience: config.AUTH0_AUDIENCE,
-  issuerBaseURL: `https://${config.AUTH0_DOMAIN}`,
-  tokenSigningAlg: 'RS256'
-});
-
 // Extend Express Request type
 declare global {
   namespace Express {
@@ -27,6 +20,40 @@ export const authMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
+  // Allow introspection queries for Apollo Sandbox
+  if (req.body && req.body.query && (
+    req.body.query.includes('__schema') || 
+    req.body.query.includes('__type') ||
+    req.body.query.includes('IntrospectionQuery')
+  )) {
+    logger.info('Allowing introspection query for Apollo Sandbox');
+    return next();
+  }
+
+  // Development mode: bypass authentication completely
+  if (config.NODE_ENV === 'development') {
+    logger.info('Development mode: bypassing authentication');
+    req.user = {
+      sub: 'dev-user-123',
+      permissions: ['read:analytics', 'write:analytics']
+    };
+    return next();
+  }
+
+  // Production mode: use Auth0 authentication only if properly configured
+  if (!config.AUTH0_DOMAIN || !config.AUTH0_AUDIENCE || 
+      config.AUTH0_DOMAIN === '' || config.AUTH0_AUDIENCE === '') {
+    logger.error('Auth0 configuration missing for production');
+    return res.status(500).json({ message: 'Auth0 configuration missing' });
+  }
+
+  // Configure Auth0 middleware
+  const checkJwt = auth({
+    audience: config.AUTH0_AUDIENCE,
+    issuerBaseURL: `https://${config.AUTH0_DOMAIN}`,
+    tokenSigningAlg: 'RS256'
+  });
+
   try {
     await checkJwt(req, res, (err: any) => {
       if (err) {

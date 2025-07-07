@@ -12,9 +12,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Test endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'OK', message: 'Server is running' });
+});
+
 // Create Apollo Server
 const apolloServer = new ApolloServer({
   schema,
+  introspection: true, // Enable introspection for Apollo Sandbox
 });
 
 // Start Apollo Server

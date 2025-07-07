@@ -1,0 +1,38 @@
+enum TimeInterval {
+  HOURLY
+  DAILY
+  WEEKLY
+  MONTHLY
+}
+
+input TimeRangeInput {
+  start: String!
+  end: String!
+  interval: TimeInterval!
+}
+
+type AnalyticsOverview {
+  totalLearningHours: Float!
+  completedCourses: Int!
+  averageScore: Float!
+  activeStreak: Int!
+  lastActive: String
+  totalCertificates: Int
+  skillsAcquired: Int
+}
+
+type Analytics {
+  overview: AnalyticsOverview!
+}
+
+type TimeProgress {
+  date: String!
+  hoursSpent: Float!
+  activitiesCompleted: Int!
+  efficiency: Float!
+}
+
+type Query {
+  getAnalytics(timeRange: TimeRangeInput!): Analytics!
+  getDetailedProgress(category: String, timeRange: TimeRangeInput!): [TimeProgress!]!
+} 
