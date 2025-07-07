@@ -1,5 +1,7 @@
 import { PlaygroundService } from '../../services/PlaygroundServices';
 import { ProblemModel } from '../../models/Problem';
+import { submitHandler } from '../../utils/submitHandler.ts';
+import { SubmittedCodeModel } from '../../models/SubmittedFile.ts';
 
 export const playgroundResolvers = {
   Query: {
@@ -30,20 +32,8 @@ export const playgroundResolvers = {
 
   Mutation: {
     executeCode: async (_: any, { fileId }: { fileId: string }) => {
-      
-      try {
-        if (!fileId) {
-          console.error('No fileId provided');
-          return {
-            stdout: '',
-            stderr: 'No fileId provided',
-            success: false,
-            passedTestCases: 0,
-            executionTime: 0
-          };
-        }
-
-        const result = await PlaygroundService.execute(fileId);
+      if(submitHandler(fileId)){ 
+        const result = await PlaygroundService.execute(fileId, 'executeCode');
         
         if (!result) {
           console.error('Service returned null/undefined');
@@ -55,31 +45,54 @@ export const playgroundResolvers = {
             executionTime: 0
           };
         }
-        
-        const transformedResult = {
-          stdout: result.stdout || '',
-          stderr: result.stderr || '',
-          success: Boolean(result.success),
-          passedTestCases: result.passedTestCases || 0,
-          executionTime: result.executionTime || 0
-        };
-        
-        return transformedResult;
-        
-      } catch (err: any) {
-        console.error('Error in executeCode resolver:', err);
-        
-        const errorResult = {
+
+        return result;
+      }
+        return {
           stdout: '',
-          stderr: err?.message || 'Unknown error occurred',
+          stderr: 'Invalid file ID or unauthorized access',
           success: false,
           passedTestCases: 0,
           executionTime: 0
         };
+    },
+
+
+    submitCode: async (_: any, { fileId }: { fileId: string }) => {
+      if(submitHandler(fileId)){ 
+        const result = await PlaygroundService.execute(fileId, 'submitCode');
         
-        console.log('Returning error result:', errorResult);
-        return errorResult;
+        if (!result) {
+          console.error('Service returned null/undefined');
+          return {
+            stdout: '',
+            stderr: 'Service returned no result',
+            success: false,
+            passedTestCases: 0,
+            executionTime: 0
+          };
+        }
+      try {
+        await SubmittedCodeModel.create({
+          fileId,
+          stdout: result.stdout,
+          stderr: result.stderr,
+          success: result.success,
+          passedTestCases: result.passedTestCases,
+          executionTime: result.executionTime
+        });
+      } catch (dbError) {
+        console.error('Failed to save submitted code:', dbError);
       }
+        return result;
+      }
+      return {
+        stdout: '',
+        stderr: 'Invalid file ID or unauthorized access',
+        success: false,
+        passedTestCases: 0,
+        executionTime: 0
+      };
     }
   }
 };

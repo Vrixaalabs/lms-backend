@@ -17,8 +17,9 @@ type Problem {
 
 type Query {
     problems: [Problem!]!
-  }
+}
 
 type Mutation {
   executeCode(fileId: ID!): ExecutionResult!
+  submitCode( fileId: ID!): ExecutionResult!
 }
