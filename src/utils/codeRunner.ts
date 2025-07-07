@@ -2,11 +2,7 @@ import { exec } from 'child_process';
 import fs from 'fs/promises';
 import path from 'path';
 
-export async function runCodeSafely(
-  language: string,
-  wrappedCode: string,
-  expectedOutputs: string[]
-) {
+export async function runCodeSafely( language: string, wrappedCode: string, expectedOutputs: string[] ) {
   const langMap = {
     python: { ext: 'py', cmd: 'python3' },
     javascript: { ext: 'js', cmd: 'node' }
