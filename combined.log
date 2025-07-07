@@ -1,0 +1,3 @@
+2025-07-03T16:24:18.945Z [[32minfo[39m]: Successfully connected to MongoDB.
+2025-07-03T16:24:18.950Z [[32minfo[39m]: 🚀 Server is running on http://localhost:4000
+2025-07-03T16:24:18.951Z [[32minfo[39m]: 🚀 GraphQL endpoint: http://localhost:4000/graphql
