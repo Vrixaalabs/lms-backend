@@ -37,6 +37,7 @@ for (let i of inputs) {
   console.log(solve(n));
 }
 `;
+
   } else {
     throw new Error('Unsupported language');
   }

@@ -7,6 +7,7 @@ export interface ISubmittedCode extends Document {
   success: boolean;
   passedTestCases: number;
   executionTime: number;
+  owner: string;
   submittedAt: Date;
 }
 
@@ -17,6 +18,7 @@ const SubmittedCodeSchema: Schema = new Schema({
   success: { type: Boolean, required: true },
   passedTestCases: { type: Number },
   executionTime: { type: Number },
+  owner: { type: String, required: true },
   submittedAt: { type: Date, default: Date.now }
 });
 
