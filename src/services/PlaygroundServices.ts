@@ -1,74 +1,70 @@
 import { PlaygroundFileModel } from '../models/PlaygroundFile';
+import { SubmittedCodeModel } from '../models/SubmittedFile';
 import { codeWrapper } from '../utils/codeWrapper';
 import { runCodeSafely } from '../utils/codeRunner';
+import { errorHandler } from '../utils/errorHandler.ts';
 
 export const PlaygroundService = {
-  async execute(fileId: string, submitType: string) {
+  async execute(fileId: string, submitType: string, user: any) {
     console.log('PlaygroundService.execute called with fileId:', fileId);
+
+    const userId = user.auth0Id;
+
+    if (!user) {
+      throw new Error('User not authenticated');
+    }
 
     try {
       const file = await PlaygroundFileModel.findById(fileId);
 
       if (!file) {
-        console.error('File not found.');
-        return {
-          stdout: '',
-          stderr: 'Playground file not found',
-          success: false,
-          passedTestCases: 0,
-          executionTime: 0
-        };
+        return errorHandler('Playground file not found', userId); 
       }
 
       if (!file.content || file.content.trim().length === 0) {
-        console.error('Empty source file!');
-        return {
-          stdout: '',
-          stderr: 'Empty source file!',
-          success: false,
-          passedTestCases: 0,
-          executionTime: 0
-        };
+        return errorHandler('Empty source file', userId); 
       }
 
-      let wrappedCode: string;
-      let expectedOutputs: string[];
-
-      if (submitType === 'executeCode' || submitType === 'submitCode') {
-        const result = await codeWrapper(file.language, file.content, file.problemId, submitType);
-        wrappedCode = result.wrappedCode;
-        expectedOutputs = result.expectedOutputs;
-      } else {
-        return {
-          stdout: '',
-          stderr: 'Invalid submitType. Must be "executeCode" or "submitCode".',
-          success: false,
-          passedTestCases: 0,
-          executionTime: 0
-        };
+      if (submitType !== 'executeCode' && submitType !== 'submitCode') {
+        return errorHandler('Invalid submitType, must be executeCode() or submitCode()', userId); 
       }
 
-      const result = await runCodeSafely(file.language, wrappedCode, expectedOutputs);
+      const { wrappedCode, expectedOutputs } = await codeWrapper(
+        file.language,
+        file.content,
+        file.problemId,
+        submitType
+      );
 
-      return {
+      const result = await runCodeSafely(file.language, wrappedCode, expectedOutputs, userId);
+
+      const response = {
         stdout: result.stdout || '',
         stderr: result.stderr || '',
         success: Boolean(result.success),
         passedTestCases: result.passedTestCases || 0,
-        executionTime: result.executionTime || 0
+        executionTime: result.executionTime || 0,
+        owner: userId,
       };
 
+      if (submitType === 'submitCode') {
+        await SubmittedCodeModel.create({
+          fileId,
+          stdout: response.stdout,
+          stderr: response.stderr,
+          success: response.success,
+          passedTestCases: response.passedTestCases,
+          executionTime: response.executionTime,
+          owner: userId,
+        });
+      }
+
+      return response;
     } catch (error: any) {
       console.error('Service error:', error);
-      return {
-        stdout: '',
-        stderr: error?.message || 'Unknown service error',
-        success: false,
-        passedTestCases: 0,
-        executionTime: 0
-      };
+        return errorHandler('Unknown service error', userId); 
     }
-  }
+  },
 };
 
 export default PlaygroundService;

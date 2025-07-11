@@ -2,7 +2,7 @@ import { exec } from 'child_process';
 import fs from 'fs/promises';
 import path from 'path';
 
-export async function runCodeSafely( language: string, wrappedCode: string, expectedOutputs: string[] ) {
+export async function runCodeSafely( language: string, wrappedCode: string, expectedOutputs: string[], userId: string ) {
   const langMap = {
     python: { ext: 'py', cmd: 'python3' },
     javascript: { ext: 'js', cmd: 'node' }
@@ -36,7 +36,8 @@ export async function runCodeSafely( language: string, wrappedCode: string, expe
         stderr: stderr.trim(),
         success: !err && passed === expectedOutputs.length,
         passedTestCases: passed,
-        executionTime: timeTaken
+        executionTime: timeTaken,
+        owner: userId
       });
     });
   });

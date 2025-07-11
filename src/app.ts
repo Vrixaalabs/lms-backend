@@ -1,40 +1,39 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { schema } from './graphql';
 import { authMiddleware } from './middleware/authMiddleware';
 
-// Create Express app
+dotenv.config();
+
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Create Apollo Server
 const apolloServer = new ApolloServer({
   schema,
 });
 
-// Start Apollo Server
 async function startApolloServer() {
   await apolloServer.start();
-  
-  // Apply Apollo middleware
-  app.use(
-    '/graphql',
-    //authMiddleware,
-    expressMiddleware(apolloServer, {
-      context: async ({ req }) => ({
-        user: req.user, // Set by authMiddleware
-      }),
-    })
-  );
+
+app.use(
+  '/graphql',
+  authMiddleware, 
+  expressMiddleware(apolloServer, {
+    context: async ({ req }) => {
+      console.log('GraphQL context.user:', req.user); 
+      return { user: req.user || null };
+    }
+  })
+);
 }
 
 startApolloServer().catch((error) => {
-  console.error('Failed to start Apollo Server:', error);
+  console.error('❌ Apollo Server startup error:', error);
 });
 
-export { app }; 
+export { app };
