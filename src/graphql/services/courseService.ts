@@ -38,6 +38,10 @@ export const CourseService = {
       };
     }
 
+    if ((filter as any).categories?.length) {
+      matchStage.categories = { $in: (filter as any).categories };
+    }
+
     const sortFieldMap: Record<string, string> = {
       RATING: 'rating',
       PRICE: 'price',
