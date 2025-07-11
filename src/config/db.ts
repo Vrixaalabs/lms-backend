@@ -1,21 +1,19 @@
 import mongoose from 'mongoose';
-import { config } from './env';
-import { logger } from '../utils/logger';
 
-export async function connectDB(): Promise<void> {
+const connectDB = async () => {
   try {
-    await mongoose.connect(config.MONGODB_URI);
-    logger.info('Successfully connected to MongoDB.');
-  } catch (error) {
-    logger.error('Error connecting to MongoDB:', error);
-    throw error;
+    const mongoUri = 'mongodb://localhost:27017/courses-db'; // 👈 Hardcoded URI
+
+    await mongoose.connect(mongoUri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    } as mongoose.ConnectOptions);
+
+    console.log('MongoDB connected');
+  } catch (err: any) {
+    console.error('MongoDB connection error:', err.message);
+    process.exit(1);
   }
+};
 
-  mongoose.connection.on('error', (error) => {
-    logger.error('MongoDB connection error:', error);
-  });
-
-  mongoose.connection.on('disconnected', () => {
-    logger.warn('MongoDB disconnected');
-  });
-} 
+export default connectDB;
