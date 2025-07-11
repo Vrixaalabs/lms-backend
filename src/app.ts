@@ -10,11 +10,9 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Apollo Server setup
 const apolloServer = new ApolloServer({
   schema,
 });
@@ -24,10 +22,10 @@ async function startApolloServer() {
 
 app.use(
   '/graphql',
-  authMiddleware, // ✅ runs first
+  authMiddleware, 
   expressMiddleware(apolloServer, {
     context: async ({ req }) => {
-      console.log('GraphQL context.user:', req.user); // ADD THIS
+      console.log('GraphQL context.user:', req.user); 
       return { user: req.user || null };
     }
   })
