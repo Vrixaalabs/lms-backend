@@ -22,6 +22,7 @@ async function startApolloServer() {
   await apolloServer.start();
   
   // Apply Apollo middleware
+  //Comment this block to test graphql server
   app.use(
     '/graphql',
     authMiddleware,
@@ -30,7 +31,21 @@ async function startApolloServer() {
         user: req.user, // Set by authMiddleware
       }),
     })
+  ); 
+
+  // Bypassing Auth0 to check graphql server
+  // Uncomment this block to test graphql server
+ /*
+  app.use(
+    '/graphql',
+    expressMiddleware(apolloServer, {
+      context: async () => ({
+        user: { id: 'user123' }, //hardcoded mock user
+      }),
+    })
   );
+  */
+  
 }
 
 startApolloServer().catch((error) => {

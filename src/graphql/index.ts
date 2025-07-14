@@ -1,22 +1,17 @@
-import { readFileSync } from 'fs';
-import { join } from 'path';
-import { makeExecutableSchema } from '@graphql-tools/schema';
-import { userResolvers } from './resolvers/userResolvers';
+/*This file builds GraphQL schema for Apollo Server by:
 
-// Read GraphQL type definitions
-const userTypeDefs = readFileSync(
-  join(__dirname, 'typeDefs', 'user.graphql'),
-  'utf-8'
-);
+Loading all .graphql files from typedefs/
 
-// Combine all type definitions
-const typeDefs = [userTypeDefs];
+Merging all resolvers
 
-// Combine all resolvers
-const resolvers = [userResolvers];
+Exporting the final schema object */
 
-// Create executable schema
-export const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-}); 
+//import { readFileSync } from 'fs';
+import { GraphQLSchema } from 'graphql';
+import { RootQuery } from '@/graphql/types/rootQuery';
+import { RootMutation } from '@/graphql/types/rootMutation';
+
+export const schema = new GraphQLSchema({
+  query: RootQuery,
+  mutation: RootMutation,
+});
